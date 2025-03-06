@@ -2,10 +2,10 @@
 
 int main() {
     FILE *fp;
-    
+
     // 定義三個陣列
     int a[] = {0, 1, 2};
-    char b[] = "ABC"; // 字串包含 '\0' 結尾
+    char b[] = {'A', 'B', 'C'}; // 不含 '\0'
     float c[] = {1.1, 1.2, 1.3};
 
     // 寫入二進位檔案
@@ -15,14 +15,14 @@ int main() {
         return 1;
     }
     fwrite(a, sizeof(int), 3, fp);
-    fwrite(b, sizeof(char), 3, fp); // 只寫入 'A', 'B', 'C'
+    fwrite(b, sizeof(char), 3, fp);
     fwrite(c, sizeof(float), 3, fp);
     fclose(fp);
 
-    // 清空陣列以測試讀取
-    int ra[3];
-    char rb[3];
-    float rc[3];
+    // 清空陣列測試讀取
+    int ra[3] = {0};
+    char rb[3] = {0};
+    float rc[3] = {0};
 
     // 讀取二進位檔案
     fp = fopen("a.bin", "rb");
@@ -42,3 +42,4 @@ int main() {
 
     return 0;
 }
+
